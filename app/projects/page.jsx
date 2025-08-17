@@ -1,5 +1,6 @@
 'use client';
 import React from 'react';
+import Image from 'next/image';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef, useState, useEffect } from 'react';
 import { FaGithub, FaExternalLinkAlt, FaDownload, FaSearch } from 'react-icons/fa';
@@ -40,6 +41,7 @@ export default function ProjectsPage() {
             title: "ft_transcendence",
             description: "Real-time multiplayer ping pong game with modern web technologies. Features include OAuth authentication, live chat, game spectating, and tournament system.",
             technologies: ["Next.js", "React", "WebSockets", "OAuth", "PostgreSQL", "Docker"],
+            image: "/transcendence.jpg",
             liveLink: null,
             githubLink: "https://github.com/aberkach/ft_transcendence",
             gradient: "from-blue-500 via-purple-500 to-pink-500",
@@ -50,6 +52,7 @@ export default function ProjectsPage() {
             title: "ft_irc",
             description: "IRC server implementation in C++ following RFC standards. Supports multiple channels, private messaging, operator commands, and file transfers.",
             technologies: ["C++", "Socket Programming", "IRC Protocol", "Multi-threading"],
+            image: "/ft_irc.jpg",
             liveLink: null,
             githubLink: "https://github.com/aberkach/ft_irc",
             gradient: "from-green-400 via-teal-500 to-blue-600",
@@ -60,6 +63,7 @@ export default function ProjectsPage() {
             title: "cub3d",
             description: "3D raycasting game engine inspired by Wolfenstein 3D. Built from scratch in C with custom graphics rendering and collision detection.",
             technologies: ["C", "MinilibX", "Raycasting", "Graphics Programming"],
+            image: "/cub3d.png",
             liveLink: null,
             githubLink: "https://github.com/aberkach/cub3d",
             gradient: "from-orange-400 via-red-500 to-pink-500",
@@ -70,6 +74,7 @@ export default function ProjectsPage() {
             title: "minishell",
             description: "Unix shell implementation with command parsing, environment variables, pipes, redirections, and built-in commands like cd, pwd, echo.",
             technologies: ["C", "Unix Systems", "Process Management", "Parsing"],
+            image: "/minishell.jpeg",
             liveLink: null,
             githubLink: "https://github.com/aberkach/minishell",
             gradient: "from-cyan-400 via-blue-500 to-purple-600",
@@ -80,6 +85,7 @@ export default function ProjectsPage() {
             title: "philosophers",
             description: "Solution to the dining philosophers problem demonstrating concurrent programming concepts with threads and mutexes to avoid deadlocks.",
             technologies: ["C", "Threading", "Mutexes", "Synchronization"],
+            image: "/Dining-Philosophers-Problem.png",
             liveLink: null,
             githubLink: "https://github.com/aberkach/philosophers",
             gradient: "from-indigo-400 via-purple-500 to-pink-500",
@@ -90,6 +96,7 @@ export default function ProjectsPage() {
             title: "Inception",
             description: "Containerized web infrastructure using Docker. Multi-service architecture with Nginx, WordPress, MariaDB, and custom configurations.",
             technologies: ["Docker", "Docker Compose", "Nginx", "MariaDB", "WordPress"],
+            image: "/inception.png",
             liveLink: null,
             githubLink: "https://github.com/aberkach/Inception",
             gradient: "from-emerald-400 via-cyan-500 to-blue-600",
@@ -227,20 +234,32 @@ export default function ProjectsPage() {
                                 animationDelay: `${index * 0.1}s`
                             }}
                         >
-                            {/* Project Image Placeholder */}
+                            {/* Project Image */}
                             <motion.div 
-                                className={`w-full h-52 rounded-2xl mb-6 flex items-center justify-center bg-gradient-to-br ${project.gradient} relative overflow-hidden`}
+                                className="w-full h-52 rounded-2xl mb-6 relative overflow-hidden group/image"
                                 whileHover={{ scale: 1.05, rotateZ: 2 }}
                                 transition={{ type: "spring", stiffness: 300 }}
                             >
-                                <div className="absolute inset-0 bg-black/20"></div>
-                                <span className="text-white text-xl font-bold relative z-10 text-glow">
-                                    {project.title}
-                                </span>
+                                <Image
+                                    src={project.image}
+                                    alt={project.title}
+                                    fill
+                                    className="object-cover transition-transform duration-500 group-hover/image:scale-110"
+                                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                                />
+                                <div className="absolute inset-0 bg-black/40 group-hover/image:bg-black/20 transition-all duration-300"></div>
+                                <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-60 group-hover/image:opacity-40 transition-all duration-300`}></div>
+                                
+                                {/* Project Title Overlay */}
+                                <div className="absolute bottom-4 left-4 right-4 z-10">
+                                    <h3 className="text-white text-xl font-bold text-glow mb-1">
+                                        {project.title}
+                                    </h3>
+                                </div>
                                 
                                 {/* Animated Category Badge */}
                                 <motion.div
-                                    className="absolute top-4 right-4 bg-black/40 backdrop-blur-sm px-3 py-1 rounded-full text-white text-sm font-medium"
+                                    className="absolute top-4 right-4 bg-black/40 backdrop-blur-sm px-3 py-1 rounded-full text-white text-sm font-medium z-10"
                                     whileHover={{ scale: 1.1 }}
                                 >
                                     {project.category}

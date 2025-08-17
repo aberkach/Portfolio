@@ -1,6 +1,7 @@
 'use client';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import React, { useRef, useState, useEffect } from 'react';
+import Image from 'next/image';
 import { ChevronLeft, ChevronRight, ExternalLink, Github } from 'lucide-react';
 import { 
   FaRocket, FaClock, FaStar, FaComments, FaGraduationCap, 
@@ -68,6 +69,7 @@ export default function Home() {
       category: "Full-Stack",
       status: "Completed",
       year: "2024",
+      image: "/transcendence.jpg",
       features: ["Real-time multiplayer", "OAuth integration", "User management", "WebSocket communication"],
       github: "#",
       demo: "#"
@@ -81,6 +83,7 @@ export default function Home() {
       category: "System Programming",
       status: "Completed",
       year: "2024",
+      image: "/ft_irc.jpg",
       features: ["Concurrent connections", "Channel management", "IRC protocol", "Multi-threading"],
       github: "#",
       demo: "#"
@@ -94,6 +97,7 @@ export default function Home() {
       category: "Graphics Programming",
       status: "Completed",
       year: "2023",
+      image: "/cub3d.png",
       features: ["3D raycasting", "Texture mapping", "Collision detection", "Graphics optimization"],
       github: "#",
       demo: "#"
@@ -107,6 +111,7 @@ export default function Home() {
       category: "System Programming",
       status: "Completed",
       year: "2023",
+      image: "/Dining-Philosophers-Problem.png",
       features: ["Thread synchronization", "Deadlock prevention", "Resource management", "Performance optimization"],
       github: "#",
       demo: "#"
@@ -120,7 +125,22 @@ export default function Home() {
       category: "System Programming",
       status: "Completed",
       year: "2023",
+      image: "/minishell.jpeg",
       features: ["Command parsing", "Pipe implementation", "Environment variables", "Built-in commands"],
+      github: "#",
+      demo: "#"
+    },
+    {
+      id: 6,
+      title: "Inception",
+      description: "Containerized web infrastructure using Docker. Multi-service architecture with Nginx, WordPress, MariaDB, and custom configurations.",
+      tech: ["Docker", "Docker Compose", "Nginx", "MariaDB", "WordPress"],
+      gradient: "from-emerald-400 via-cyan-500 to-blue-600",
+      category: "DevOps",
+      status: "Completed",
+      year: "2023",
+      image: "/inception.png",
+      features: ["Docker containers", "Multi-service architecture", "Nginx configuration", "Database management"],
       github: "#",
       demo: "#"
     }
@@ -617,11 +637,19 @@ export default function Home() {
                     >
                       {/* Project Header */}
                       <motion.div 
-                        className={`h-64 relative overflow-hidden bg-gradient-to-br ${project.gradient}`}
+                        className="h-64 relative overflow-hidden"
                         whileHover={{ scale: 1.05 }}
                         transition={{ type: "spring", stiffness: 400 }}
                       >
-                        <div className="absolute inset-0 bg-black/20"></div>
+                        <Image
+                          src={project.image}
+                          alt={project.title}
+                          fill
+                          className="object-cover transition-transform duration-500 hover:scale-110"
+                          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 50vw"
+                        />
+                        <div className="absolute inset-0 bg-black/40"></div>
+                        <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-60`}></div>
                         <div className="relative z-10 p-8 h-full flex flex-col justify-between">
                           <div className="flex justify-between items-start">
                             <div>
