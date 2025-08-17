@@ -51,22 +51,67 @@ export default function ContactPage() {
         message: ''
     });
 
+    const [formErrors, setFormErrors] = useState({});
     const { isLoading: isSubmitting, execute } = useAsyncLoading();
     const [submitStatus, setSubmitStatus] = useState('');
 
+    const validateForm = () => {
+        const errors = {};
+        
+        if (!formData.name.trim()) {
+            errors.name = 'Name is required';
+        }
+        
+        if (!formData.email.trim()) {
+            errors.email = 'Email is required';
+        } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+            errors.email = 'Please enter a valid email address';
+        }
+        
+        if (!formData.subject.trim()) {
+            errors.subject = 'Subject is required';
+        }
+        
+        if (!formData.message.trim()) {
+            errors.message = 'Message is required';
+        } else if (formData.message.trim().length < 10) {
+            errors.message = 'Message must be at least 10 characters long';
+        }
+        
+        setFormErrors(errors);
+        return Object.keys(errors).length === 0;
+    };
+
     const handleChange = (e) => {
+        const { name, value } = e.target;
         setFormData({
             ...formData,
-            [e.target.name]: e.target.value
+            [name]: value
         });
+        
+        // Clear error when user starts typing
+        if (formErrors[name]) {
+            setFormErrors({
+                ...formErrors,
+                [name]: ''
+            });
+        }
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         
+        if (!validateForm()) {
+            return;
+        }
+        
         const submitForm = async () => {
             // Simulate form submission (replace with actual implementation)
             await new Promise(resolve => setTimeout(resolve, 2000));
+            
+            // Here you would typically send the form data to your backend
+            console.log('Form data:', formData);
+            
             return 'Message sent successfully!';
         };
 
@@ -74,11 +119,13 @@ export default function ContactPage() {
             await execute(submitForm);
             setSubmitStatus('success');
             setFormData({ name: '', email: '', subject: '', message: '' });
+            setFormErrors({});
             
             // Reset status after 5 seconds
             setTimeout(() => setSubmitStatus(''), 5000);
         } catch (error) {
             setSubmitStatus('error');
+            console.error('Form submission error:', error);
             setTimeout(() => setSubmitStatus(''), 5000);
         }
     };
@@ -144,7 +191,7 @@ export default function ContactPage() {
                         
                         {submitStatus === 'success' && (
                             <motion.div 
-                                className="mb-6 p-4 bg-accent-500/20 border border-accent-500/50 rounded-2xl"
+                                className="mb-6 p-4 bg-green-500/20 border border-green-500/50 rounded-2xl"
                                 initial={{ opacity: 0, scale: 0.9, y: -10 }}
                                 animate={{ opacity: 1, scale: 1, y: 0 }}
                                 transition={{ type: "spring", stiffness: 300 }}
@@ -152,6 +199,20 @@ export default function ContactPage() {
                                 <p className="text-textPrimary flex items-center">
                                     <FaCheck className="mr-3 text-2xl text-green-400" />
                                     Thank you for your message! I'll get back to you within 24 hours.
+                                </p>
+                            </motion.div>
+                        )}
+
+                        {submitStatus === 'error' && (
+                            <motion.div 
+                                className="mb-6 p-4 bg-red-500/20 border border-red-500/50 rounded-2xl"
+                                initial={{ opacity: 0, scale: 0.9, y: -10 }}
+                                animate={{ opacity: 1, scale: 1, y: 0 }}
+                                transition={{ type: "spring", stiffness: 300 }}
+                            >
+                                <p className="text-textPrimary flex items-center">
+                                    <span className="mr-3 text-2xl text-red-400">❌</span>
+                                    Sorry, there was an error sending your message. Please try again.
                                 </p>
                             </motion.div>
                         )}
@@ -174,10 +235,23 @@ export default function ContactPage() {
                                         value={formData.name}
                                         onChange={handleChange}
                                         required
-                                        className="w-full px-4 py-3 glass-effect border border-primary-500/20 rounded-2xl text-textPrimary placeholder-textMuted focus:outline-none focus:border-primary-400 transition-all duration-300"
+                                        className={`w-full px-4 py-3 glass-effect border rounded-2xl text-textPrimary placeholder-textMuted focus:outline-none transition-all duration-300 ${
+                                            formErrors.name 
+                                                ? 'border-red-500/50 focus:border-red-400' 
+                                                : 'border-primary-500/20 focus:border-primary-400'
+                                        }`}
                                         placeholder="Your Name"
                                         whileFocus={{ scale: 1.02 }}
                                     />
+                                    {formErrors.name && (
+                                        <motion.p 
+                                            className="text-red-400 text-sm mt-1"
+                                            initial={{ opacity: 0, y: -10 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                        >
+                                            {formErrors.name}
+                                        </motion.p>
+                                    )}
                                 </motion.div>
                                 
                                 <motion.div 
@@ -196,10 +270,23 @@ export default function ContactPage() {
                                         value={formData.email}
                                         onChange={handleChange}
                                         required
-                                        className="w-full px-4 py-3 glass-effect border border-primary-500/20 rounded-2xl text-textPrimary placeholder-textMuted focus:outline-none focus:border-primary-400 transition-all duration-300"
+                                        className={`w-full px-4 py-3 glass-effect border rounded-2xl text-textPrimary placeholder-textMuted focus:outline-none transition-all duration-300 ${
+                                            formErrors.email 
+                                                ? 'border-red-500/50 focus:border-red-400' 
+                                                : 'border-primary-500/20 focus:border-primary-400'
+                                        }`}
                                         placeholder="your.email@example.com"
                                         whileFocus={{ scale: 1.02 }}
                                     />
+                                    {formErrors.email && (
+                                        <motion.p 
+                                            className="text-red-400 text-sm mt-1"
+                                            initial={{ opacity: 0, y: -10 }}
+                                            animate={{ opacity: 1, y: 0 }}
+                                        >
+                                            {formErrors.email}
+                                        </motion.p>
+                                    )}
                                 </motion.div>
                             </div>
                             
@@ -219,10 +306,23 @@ export default function ContactPage() {
                                     value={formData.subject}
                                     onChange={handleChange}
                                     required
-                                    className="w-full px-4 py-3 glass-effect border border-primary-500/20 rounded-2xl text-textPrimary placeholder-textMuted focus:outline-none focus:border-primary-400 transition-all duration-300"
+                                    className={`w-full px-4 py-3 glass-effect border rounded-2xl text-textPrimary placeholder-textMuted focus:outline-none transition-all duration-300 ${
+                                        formErrors.subject 
+                                            ? 'border-red-500/50 focus:border-red-400' 
+                                            : 'border-primary-500/20 focus:border-primary-400'
+                                    }`}
                                     placeholder="Project Discussion"
                                     whileFocus={{ scale: 1.02 }}
                                 />
+                                {formErrors.subject && (
+                                    <motion.p 
+                                        className="text-red-400 text-sm mt-1"
+                                        initial={{ opacity: 0, y: -10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                    >
+                                        {formErrors.subject}
+                                    </motion.p>
+                                )}
                             </motion.div>
                             
                             <motion.div 
@@ -241,10 +341,23 @@ export default function ContactPage() {
                                     onChange={handleChange}
                                     required
                                     rows={5}
-                                    className="w-full px-4 py-3 glass-effect border border-primary-500/20 rounded-2xl text-textPrimary placeholder-textMuted focus:outline-none focus:border-primary-400 transition-all duration-300 resize-none"
+                                    className={`w-full px-4 py-3 glass-effect border rounded-2xl text-textPrimary placeholder-textMuted focus:outline-none transition-all duration-300 resize-none ${
+                                        formErrors.message 
+                                            ? 'border-red-500/50 focus:border-red-400' 
+                                            : 'border-primary-500/20 focus:border-primary-400'
+                                    }`}
                                     placeholder="Tell me about your project or idea..."
                                     whileFocus={{ scale: 1.02 }}
                                 />
+                                {formErrors.message && (
+                                    <motion.p 
+                                        className="text-red-400 text-sm mt-1"
+                                        initial={{ opacity: 0, y: -10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                    >
+                                        {formErrors.message}
+                                    </motion.p>
+                                )}
                             </motion.div>
                             
                             <motion.button

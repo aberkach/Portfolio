@@ -247,8 +247,7 @@ export default function ProjectsPage() {
                                     className="object-cover transition-transform duration-500 group-hover/image:scale-110"
                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                 />
-                                <div className="absolute inset-0 bg-black/40 group-hover/image:bg-black/20 transition-all duration-300"></div>
-                                <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-60 group-hover/image:opacity-40 transition-all duration-300`}></div>
+                                <div className="absolute inset-0 bg-black/20 group-hover/image:bg-black/10 transition-all duration-300"></div>
                                 
                                 {/* Project Title Overlay */}
                                 <div className="absolute bottom-4 left-4 right-4 z-10">

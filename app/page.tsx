@@ -71,7 +71,7 @@ export default function Home() {
       year: "2024",
       image: "/transcendence.jpg",
       features: ["Real-time multiplayer", "OAuth integration", "User management", "WebSocket communication"],
-      github: "#",
+      github: "https://github.com/aberkach/ft_transcendence",
       demo: "#"
     },
     {
@@ -85,7 +85,7 @@ export default function Home() {
       year: "2024",
       image: "/ft_irc.jpg",
       features: ["Concurrent connections", "Channel management", "IRC protocol", "Multi-threading"],
-      github: "#",
+      github: "https://github.com/aberkach/ft_irc",
       demo: "#"
     },
     {
@@ -99,7 +99,7 @@ export default function Home() {
       year: "2023",
       image: "/cub3d.png",
       features: ["3D raycasting", "Texture mapping", "Collision detection", "Graphics optimization"],
-      github: "#",
+      github: "https://github.com/aberkach/cub3d",
       demo: "#"
     },
     {
@@ -113,7 +113,7 @@ export default function Home() {
       year: "2023",
       image: "/Dining-Philosophers-Problem.png",
       features: ["Thread synchronization", "Deadlock prevention", "Resource management", "Performance optimization"],
-      github: "#",
+      github: "https://github.com/aberkach/philosophers",
       demo: "#"
     },
     {
@@ -127,7 +127,7 @@ export default function Home() {
       year: "2023",
       image: "/minishell.jpeg",
       features: ["Command parsing", "Pipe implementation", "Environment variables", "Built-in commands"],
-      github: "#",
+      github: "https://github.com/aberkach/minishell",
       demo: "#"
     },
     {
@@ -141,7 +141,7 @@ export default function Home() {
       year: "2023",
       image: "/inception.png",
       features: ["Docker containers", "Multi-service architecture", "Nginx configuration", "Database management"],
-      github: "#",
+      github: "https://github.com/aberkach/Inception",
       demo: "#"
     }
   ];
@@ -648,8 +648,7 @@ export default function Home() {
                           className="object-cover transition-transform duration-500 hover:scale-110"
                           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 50vw"
                         />
-                        <div className="absolute inset-0 bg-black/40"></div>
-                        <div className={`absolute inset-0 bg-gradient-to-br ${project.gradient} opacity-60`}></div>
+                        <div className="absolute inset-0 bg-black/30"></div>
                         <div className="relative z-10 p-8 h-full flex flex-col justify-between">
                           <div className="flex justify-between items-start">
                             <div>

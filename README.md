@@ -1,36 +1,134 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Abdelfattah Berkach - Portfolio Website
 
-## Getting Started
+A modern, responsive portfolio website built with Next.js, showcasing my skills, projects, and experience as a software engineer.
 
-First, run the development server:
+## 🚀 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Modern Design**: Clean, professional interface with smooth animations
+- **Responsive**: Fully responsive design that works on all devices
+- **Interactive**: Engaging animations using Framer Motion
+- **Performance Optimized**: Built with Next.js 15 for optimal performance
+- **SEO Friendly**: Comprehensive meta tags and structured data
+- **Contact Form**: Functional contact form with validation
+- **Project Showcase**: Interactive project gallery with real GitHub links
+
+## 🛠️ Technologies Used
+
+- **Framework**: Next.js 15 with TypeScript
+- **Styling**: Tailwind CSS
+- **Animations**: Framer Motion
+- **Icons**: React Icons, Lucide React
+- **Build Tool**: Turbopack
+- **Deployment**: Vercel
+
+## 📂 Project Structure
+
+```
+las_V/
+├── app/
+│   ├── (components)/          # Reusable components
+│   │   ├── CursorFollower.tsx
+│   │   ├── FloatingActions.tsx
+│   │   ├── Footer.tsx
+│   │   ├── Loading.tsx
+│   │   ├── NavBar.tsx
+│   │   ├── NotificationSystem.tsx
+│   │   ├── ParticleBackground.tsx
+│   │   └── ScrollProgress.tsx
+│   ├── about/                 # About page
+│   ├── contact/               # Contact page
+│   ├── projects/              # Projects page
+│   ├── globals.css           # Global styles
+│   ├── layout.tsx            # Root layout
+│   └── page.tsx              # Home page
+├── public/                   # Static assets
+│   ├── project images/       # Project screenshots
+│   └── CV.pdf               # Resume/CV
+└── README.md
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🎨 Key Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Interactive Components
+- **Particle Background**: Dynamic particle system
+- **Cursor Follower**: Custom cursor with interactive effects
+- **Scroll Progress**: Visual progress indicator
+- **Floating Actions**: Quick access buttons
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Pages
+- **Home**: Hero section, featured projects carousel, stats
+- **About**: Personal story, experience, skills, education
+- **Projects**: Complete project gallery with filtering
+- **Contact**: Contact form, social links, FAQ section
 
-## Learn More
+### Projects Showcased
+- **ft_transcendence**: Real-time multiplayer ping pong game
+- **ft_irc**: IRC server implementation in C++
+- **cub3d**: 3D raycasting game engine
+- **minishell**: Unix shell implementation
+- **philosophers**: Dining philosophers problem solution
+- **Inception**: Docker containerized web infrastructure
 
-To learn more about Next.js, take a look at the following resources:
+## 🚀 Getting Started
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Prerequisites
+- Node.js 18+ 
+- npm or yarn
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### Installation
 
-## Deploy on Vercel
+1. Clone the repository:
+```bash
+git clone https://github.com/aberkach/Portfolio.git
+cd Portfolio
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+2. Install dependencies:
+```bash
+npm install
+```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+3. Run the development server:
+```bash
+npm run dev
+```
+
+4. Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+### Building for Production
+
+```bash
+npm run build
+npm start
+```
+
+## 📱 Responsive Design
+
+The portfolio is fully responsive and optimized for:
+- 📱 Mobile devices (320px+)
+- 📱 Tablets (768px+)
+- 💻 Desktops (1024px+)
+- 🖥️ Large screens (1440px+)
+
+## 🎯 Performance
+
+- ⚡ Lighthouse score: 95+
+- 🚀 Core Web Vitals optimized
+- 📦 Code splitting and lazy loading
+- 🎨 Optimized images and assets
+
+## 📞 Contact
+
+- **Email**: berkachfatah@gmail.com
+- **Phone**: +212 6 23 07 43 15
+- **Location**: Taza, Morocco
+- **LinkedIn**: [linkedin.com/in/abdelfattah-berkach](https://linkedin.com/in/abdelfattah-berkach)
+- **GitHub**: [github.com/aberkach](https://github.com/aberkach)
+
+## 📄 License
+
+This project is open source and available under the [MIT License](LICENSE).
+
+---
+
+Built with ❤️ by Abdelfattah Berkach

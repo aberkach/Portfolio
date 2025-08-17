@@ -160,10 +160,11 @@ const AboutPage = () => {
                             </h3>
                             <div className="space-y-3">
                                 {[
-                                    { label: 'Education', value: '1337 Coding School' },
-                                    { label: 'Focus', value: 'System Programming' },
+                                    { label: 'Education', value: '1337 Coding School (42 Network)' },
+                                    { label: 'Focus', value: 'System Programming & Full-Stack' },
                                     { label: 'Languages', value: 'Arabic, French, English' },
-                                    { label: 'Experience', value: '1+ Years' }
+                                    { label: 'Experience', value: '2+ Years Programming' },
+                                    { label: 'Location', value: 'Taza, Morocco' }
                                 ].map((fact, index) => (
                                     <motion.div 
                                         key={fact.label}
@@ -201,15 +202,15 @@ const AboutPage = () => {
                                 ].map((value, index) => (
                                     <motion.div 
                                         key={value.text}
-                                        className="text-textSecondary hover:text-textPrimary transition-colors cursor-default"
+                                        className="flex items-center text-textSecondary hover:text-textPrimary transition-colors cursor-default"
                                         whileInView={{ opacity: 1, scale: 1 }}
                                         initial={{ opacity: 0, scale: 0.9 }}
                                         viewport={{ once: true }}
                                         transition={{ delay: index * 0.1 }}
                                         whileHover={{ scale: 1.05, x: 5 }}
                                     >
-                                        <span className="mr-3 text-lg">{value.icon}</span>
-                                        {value.text}
+                                        <span className="mr-3 text-lg flex-shrink-0">{value.icon}</span>
+                                        <span>{value.text}</span>
                                     </motion.div>
                                 ))}
                             </div>
@@ -230,31 +231,38 @@ const AboutPage = () => {
                     <div className="space-y-8">
                         {[
                             {
-                                title: 'First Internship',
-                                company: 'Data Up Consulting , Casablanca, Morocco',
-                                period: '2025 - present',
-                                description: []
+                                title: 'Software Engineer Intern',
+                                company: 'Data Up Consulting, Casablanca, Morocco',
+                                period: '2025 - Present',
+                                description: [
+                                    'Working on enterprise-level software solutions and data management systems',
+                                    'Collaborating with senior developers on complex technical challenges',
+                                    'Applying system programming knowledge to real-world business problems',
+                                    'Gaining experience in professional software development practices'
+                                ]
                             },
                             {
-                                title: 'Junior Software Developer',
-                                company: 'Finished the common core at 1337 School',
+                                title: 'Graduate Software Developer',
+                                company: '1337 School (42 Network)',
                                 period: '2024 - Present',
                                 description: [
-                                    'Developed complex system-level applications using C/C++ with focus on performance and memory management',
+                                    'Successfully completed the intensive Common Core curriculum at 1337 Coding School',
+                                    'Developed complex system-level applications using C/C++ with focus on performance optimization',
                                     'Built full-stack web applications including real-time multiplayer games and IRC servers',
                                     'Implemented containerized applications using Docker and modern DevOps practices',
                                     'Collaborated on peer-to-peer projects using Git and agile development methodologies'
                                 ]
                             },
                             {
-                                title: 'School Student',
-                                company: '1337, khouribga, Morocco',
+                                title: 'Computer Science Student',
+                                company: '1337 School, Khouribga, Morocco',
                                 period: '2022 - 2024',
                                 description: [
-                                    'Intensive peer-to-peer learning program focused on system programming and software engineering',
-                                    'Completed projects in C/C++, Unix systems, algorithms, and data structures',
-                                    'Developed skills in graphics programming, network programming, and web development',
-                                    'Built collaborative projects including multiplayer games, servers, and containerized applications'
+                                    'Intensive peer-to-peer learning program with project-based curriculum',
+                                    'Mastered C/C++ programming, Unix/Linux systems, algorithms, and data structures',
+                                    'Specialized in graphics programming, network programming, and web development',
+                                    'Built collaborative projects including multiplayer games, servers, and containerized applications',
+                                    'Developed strong problem-solving skills and attention to code quality'
                                 ]
                             }
                         ].map((experience, index) => (

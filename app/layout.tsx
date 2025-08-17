@@ -8,14 +8,41 @@ import CursorFollower from "./(components)/CursorFollower";
 import ParticleBackground from "./(components)/ParticleBackground";
 
 export const metadata: Metadata = {
-  title: "Abdelfattah Berkach - Software Engineer",
-  description: "Experienced software engineer specializing in system programming and full-stack development. Graduate of 1337 Coding School with expertise in C/C++, React, and modern web technologies.",
-  keywords: ["software engineer", "web development", "system programming", "full-stack", "1337", "C++", "React", "Next.js", "portfolio"],
-  authors: [{ name: "Abdelfattah Berkach" }],
+  title: "Abdelfattah Berkach - Software Engineer & Developer",
+  description: "Professional software engineer specializing in system programming, full-stack development, and modern web technologies. Graduate of 1337 Coding School with expertise in C/C++, React, Next.js, and Docker.",
+  keywords: [
+    "Abdelfattah Berkach", "software engineer", "web developer", "system programming", 
+    "full-stack developer", "1337 School", "42 Network", "C++", "React", "Next.js", 
+    "TypeScript", "Docker", "PostgreSQL", "Morocco developer", "portfolio"
+  ],
+  authors: [{ name: "Abdelfattah Berkach", url: "https://github.com/aberkach" }],
+  creator: "Abdelfattah Berkach",
+  publisher: "Abdelfattah Berkach",
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
   openGraph: {
-    title: "Abdelfattah Berkach - Software Engineer",
-    description: "Professional software engineer with expertise in system programming and full-stack development",
+    title: "Abdelfattah Berkach - Software Engineer & Developer",
+    description: "Professional software engineer with expertise in system programming, full-stack development, and modern web technologies. Available for freelance and collaboration.",
     type: "website",
+    locale: "en_US",
+    siteName: "Abdelfattah Berkach Portfolio",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Abdelfattah Berkach - Software Engineer",
+    description: "Professional software engineer specializing in system programming and full-stack development",
+  },
+  verification: {
+    google: "your-google-verification-code", // Add your actual verification code
   },
 };
 
