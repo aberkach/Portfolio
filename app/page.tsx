@@ -259,26 +259,123 @@ export default function Home() {
       <div className="max-w-6xl mx-auto relative z-10 px-6">
         {/* Hero Section */}
         <motion.div 
-          className="min-h-screen flex flex-col justify-center text-center hero-section stable-layout" 
+          className="min-h-screen flex flex-col justify-center text-center hero-section stable-layout relative" 
           variants={itemVariants}
         >
-          <motion.div className="mb-8">
-            <motion.p 
-              className="text-lg text-primary-400 font-medium mb-4 tracking-wide uppercase"
+          {/* Floating elements */}
+          <motion.div
+            className="absolute inset-0 pointer-events-none"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1, delay: 0.5 }}
+          >
+            <motion.div
+              className="absolute top-1/4 left-1/4 w-32 h-32 bg-gradient-to-r from-primary-500/10 to-secondary-500/10 rounded-full blur-xl"
+              animate={{
+                y: [0, -20, 0],
+                x: [0, 10, 0],
+                scale: [1, 1.1, 1],
+              }}
+              transition={{
+                duration: 6,
+                repeat: Infinity,
+                ease: "easeInOut"
+              }}
+            />
+            <motion.div
+              className="absolute top-1/3 right-1/4 w-24 h-24 bg-gradient-to-r from-accent-500/10 to-primary-500/10 rounded-full blur-xl"
+              animate={{
+                y: [0, 15, 0],
+                x: [0, -15, 0],
+                scale: [1, 0.9, 1],
+              }}
+              transition={{
+                duration: 8,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 2
+              }}
+            />
+            <motion.div
+              className="absolute bottom-1/3 left-1/3 w-20 h-20 bg-gradient-to-r from-secondary-500/10 to-accent-500/10 rounded-full blur-xl"
+              animate={{
+                y: [0, -10, 0],
+                x: [0, 20, 0],
+                scale: [1, 1.2, 1],
+              }}
+              transition={{
+                duration: 7,
+                repeat: Infinity,
+                ease: "easeInOut",
+                delay: 4
+              }}
+            />
+          </motion.div>
+
+          <motion.div className="mb-8 relative z-10">
+            <motion.div 
+              className="inline-flex items-center gap-2 px-6 py-3 glass-effect border border-primary-500/30 rounded-full mb-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.1 }}
+              whileHover={{ scale: 1.05, borderColor: "rgba(14, 165, 233, 0.5)" }}
             >
-              Software Engineer
-            </motion.p>
+              <motion.div
+                className="w-2 h-2 bg-green-500 rounded-full"
+                animate={{ scale: [1, 1.2, 1], opacity: [1, 0.7, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              />
+              <span className="text-primary-400 font-medium tracking-wide uppercase text-sm">
+                Available for Opportunities
+              </span>
+            </motion.div>
+            
             <motion.h1 
-              className="text-6xl lg:text-7xl font-bold text-textPrimary mb-6"
+              className="text-5xl lg:text-7xl xl:text-8xl font-bold text-textPrimary mb-6"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.2, type: "spring", stiffness: 100 }}
             >
-              <span className="gradient-text animate-shimmer bg-gradient-primary bg-[length:200%_100%]">Abdelfattah Berkach</span>
+              <motion.span 
+                className="gradient-text animate-shimmer bg-gradient-to-r from-primary-400 via-secondary-400 to-accent-400 bg-[length:200%_100%] bg-clip-text text-transparent"
+                animate={{
+                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "linear"
+                }}
+              >
+                Abdelfattah
+              </motion.span>
+              <br />
+              <motion.span 
+                className="gradient-text bg-gradient-to-r from-accent-400 via-primary-400 to-secondary-400 bg-clip-text text-transparent"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+              >
+                Berkach
+              </motion.span>
             </motion.h1>
+            
+            <motion.p 
+              className="text-xl lg:text-2xl text-textSecondary font-light max-w-2xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
+            >
+              Software Engineer crafting{" "}
+              <motion.span 
+                className="text-primary-400 font-medium"
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 300 }}
+              >
+                robust systems
+              </motion.span>
+              {" "}& scalable solutions
+            </motion.p>
           </motion.div>
           
           <motion.div
@@ -318,98 +415,119 @@ export default function Home() {
           </motion.p>
           
           <motion.div 
-            className="flex flex-col sm:flex-row gap-6 justify-center items-center"
+            className="flex flex-col sm:flex-row gap-6 justify-center items-center relative z-10"
             variants={itemVariants}
           >
             <motion.button
               onClick={() => handleNavigation('/projects')}
               disabled={isNavigating}
-              className="btn-primary btn-enhanced text-lg px-10 py-4 rounded-2xl font-semibold flex items-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed magnetic-hover"
+              className="group btn-primary btn-enhanced text-lg px-12 py-4 rounded-2xl font-semibold flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed magnetic-hover relative overflow-hidden min-h-[56px]"
               whileHover={!isNavigating ? { 
                 scale: 1.05, 
                 y: -5,
-                boxShadow: "0 20px 40px rgba(14, 165, 233, 0.4)"
+                boxShadow: "0 25px 50px rgba(14, 165, 233, 0.4)"
               } : {}}
               whileTap={!isNavigating ? { scale: 0.95 } : {}}
               transition={{ type: "spring", stiffness: 400 }}
             >
-              {isNavigating ? (
-                <>
-                  <ButtonLoader size="sm" />
-                  <span>Loading...</span>
-                </>
-              ) : (
-                <>
-                  <span>Explore My Work</span>
-                  <motion.span
-                    animate={{ x: [0, 5, 0] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  >
-                    →
-                  </motion.span>
-                </>
-              )}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-primary-600 to-secondary-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                initial={false}
+              />
+              <div className="relative z-10 flex items-center gap-3">
+                {isNavigating ? (
+                  <>
+                    <ButtonLoader size="sm" />
+                    <span>Loading...</span>
+                  </>
+                ) : (
+                  <>
+                    <span>Explore My Work</span>
+                    <motion.span
+                      className="inline-block"
+                      animate={{ x: [0, 5, 0] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    >
+                      →
+                    </motion.span>
+                  </>
+                )}
+              </div>
             </motion.button>
             
             <motion.button
               onClick={() => handleNavigation('/contact')}
               disabled={isNavigating}
-              className="btn-secondary btn-enhanced text-textPrimary py-4 px-10 rounded-2xl font-semibold transition-all duration-300 flex items-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed magnetic-hover"
+              className="group btn-secondary btn-enhanced text-textPrimary py-4 px-12 rounded-2xl font-semibold transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed magnetic-hover relative overflow-hidden border border-primary-500/30 min-h-[56px]"
               whileHover={!isNavigating ? { 
                 scale: 1.05, 
                 y: -5,
+                borderColor: "rgba(14, 165, 233, 0.6)",
                 backgroundColor: "rgba(14, 165, 233, 0.1)"
               } : {}}
               whileTap={!isNavigating ? { scale: 0.95 } : {}}
               transition={{ type: "spring", stiffness: 400 }}
             >
-              {isNavigating ? (
-                <>
-                  <ButtonLoader size="sm" />
-                  <span>Loading...</span>
-                </>
-              ) : (
-                <>
-                  <span>Let&apos;s Connect</span>
-                  <motion.span
-                    animate={{ scale: [1, 1.2, 1] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  >
-                    <FaComments className="text-lg" />
-                  </motion.span>
-                </>
-              )}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-primary-500/10 to-secondary-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                initial={false}
+              />
+              <div className="relative z-10 flex items-center gap-3">
+                {isNavigating ? (
+                  <>
+                    <ButtonLoader size="sm" />
+                    <span>Loading...</span>
+                  </>
+                ) : (
+                  <>
+                    <span>Let&apos;s Connect</span>
+                    <motion.span
+                      animate={{ scale: [1, 1.2, 1] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    >
+                      <FaComments className="text-lg" />
+                    </motion.span>
+                  </>
+                )}
+              </div>
             </motion.button>
             
             <motion.button
               onClick={handleDownloadCV}
               disabled={isDownloading}
-              className="btn-secondary btn-enhanced text-textPrimary py-4 px-10 rounded-2xl font-semibold transition-all duration-300 flex items-center gap-3 tooltip disabled:opacity-50 disabled:cursor-not-allowed magnetic-hover"
+              className="group btn-secondary btn-enhanced text-textPrimary py-4 px-12 rounded-2xl font-semibold transition-all duration-300 flex items-center justify-center gap-3 tooltip disabled:opacity-50 disabled:cursor-not-allowed magnetic-hover relative overflow-hidden border border-accent-500/30 min-h-[56px]"
               data-tooltip="Download my CV"
               whileHover={!isDownloading ? { 
                 scale: 1.05, 
                 y: -5,
+                borderColor: "rgba(139, 92, 246, 0.6)",
                 backgroundColor: "rgba(139, 92, 246, 0.1)"
               } : {}}
               whileTap={!isDownloading ? { scale: 0.95 } : {}}
               transition={{ type: "spring", stiffness: 400 }}
             >
-              {isDownloading ? (
-                <>
-                  <ButtonLoader size="sm" />
-                  <span>Preparing...</span>
-                </>
-              ) : (
-                <>
-                  <span>Download CV</span>
-                  <motion.span
-                    animate={{ y: [0, -3, 0] }}
-                    transition={{ duration: 2, repeat: Infinity }}
-                  >
-                    <FaDownload />
-                  </motion.span>
-                </>
-              )}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-accent-500/10 to-primary-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                initial={false}
+              />
+              <div className="relative z-10 flex items-center gap-3">
+                {isDownloading ? (
+                  <>
+                    <ButtonLoader size="sm" />
+                    <span>Preparing...</span>
+                  </>
+                ) : (
+                  <>
+                    <span>Download CV</span>
+                    <motion.span
+                      animate={{ y: [0, -3, 0] }}
+                      transition={{ duration: 2, repeat: Infinity }}
+                    >
+                      <FaDownload />
+                    </motion.span>
+                  </>
+                )}
+              </div>
             </motion.button>
           </motion.div>
         </motion.div>

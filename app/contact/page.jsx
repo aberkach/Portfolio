@@ -152,19 +152,97 @@ export default function ContactPage() {
             <div className="max-w-6xl mx-auto relative z-10">
                 {/* Hero Section */}
                 <motion.div 
-                    className="text-center mb-16"
+                    className="text-center mb-20 relative"
                     style={{ y }}
                     variants={itemVariants}
                     whileInView={{ opacity: 1, y: 0 }}
                     initial={{ opacity: 0, y: 50 }}
                     viewport={{ once: true }}
                 >
-                    <h1 className="text-6xl font-bold text-textPrimary mb-6">
-                        Get In <span className="gradient-text">Touch</span>
-                    </h1>
-                    <p className="text-2xl text-textSecondary max-w-2xl mx-auto leading-relaxed">
-                        Let's collaborate and bring your ideas to life. I'm always open to discussing new opportunities and exciting projects.
-                    </p>
+                    {/* Floating Elements */}
+                    <motion.div
+                        className="absolute top-0 left-1/4 w-24 h-24 bg-gradient-to-r from-primary-500/20 to-secondary-500/20 rounded-full blur-xl"
+                        animate={{
+                            y: [0, -20, 0],
+                            x: [0, 15, 0],
+                            scale: [1, 1.2, 1],
+                        }}
+                        transition={{
+                            duration: 7,
+                            repeat: Infinity,
+                            ease: "easeInOut"
+                        }}
+                    />
+                    <motion.div
+                        className="absolute top-10 right-1/4 w-20 h-20 bg-gradient-to-r from-accent-500/20 to-primary-500/20 rounded-full blur-xl"
+                        animate={{
+                            y: [0, 25, 0],
+                            x: [0, -20, 0],
+                            scale: [1, 0.8, 1],
+                        }}
+                        transition={{
+                            duration: 9,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                            delay: 3
+                        }}
+                    />
+                    
+                    <motion.div 
+                        className="inline-flex items-center gap-2 px-6 py-3 glass-effect border border-primary-500/30 rounded-full mb-8"
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ duration: 0.6, delay: 0.2 }}
+                        whileHover={{ scale: 1.05, borderColor: "rgba(14, 165, 233, 0.5)" }}
+                    >
+                        <motion.div
+                            className="w-2 h-2 bg-green-500 rounded-full"
+                            animate={{ scale: [1, 1.2, 1], opacity: [1, 0.7, 1] }}
+                            transition={{ duration: 2, repeat: Infinity }}
+                        />
+                        <span className="text-primary-400 font-medium tracking-wide uppercase text-sm">
+                            Let&apos;s Connect
+                        </span>
+                    </motion.div>
+                    
+                    <motion.h1 
+                        className="text-5xl lg:text-7xl font-bold text-textPrimary mb-6"
+                        initial={{ scale: 0.9, opacity: 0 }}
+                        animate={{ scale: 1, opacity: 1 }}
+                        transition={{ duration: 0.8, delay: 0.3, type: "spring", stiffness: 100 }}
+                    >
+                        Get In{" "}
+                        <motion.span 
+                            className="gradient-text bg-gradient-to-r from-primary-400 via-secondary-400 to-accent-400 bg-clip-text text-transparent"
+                            animate={{
+                                backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"]
+                            }}
+                            transition={{
+                                duration: 3,
+                                repeat: Infinity,
+                                ease: "linear"
+                            }}
+                        >
+                            Touch
+                        </motion.span>
+                    </motion.h1>
+                    
+                    <motion.p 
+                        className="text-xl lg:text-2xl text-textSecondary max-w-3xl mx-auto leading-relaxed"
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ duration: 0.6, delay: 0.4 }}
+                    >
+                        Ready to bring your ideas to life? Let&apos;s discuss your next{" "}
+                        <motion.span 
+                            className="text-primary-400 font-medium"
+                            whileHover={{ scale: 1.05 }}
+                            transition={{ type: "spring", stiffness: 300 }}
+                        >
+                            amazing project
+                        </motion.span>
+                        {" "}together
+                    </motion.p>
                 </motion.div>
 
                 <motion.div 

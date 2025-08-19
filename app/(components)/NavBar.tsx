@@ -23,10 +23,15 @@ function NavBar() {
 
   return (
     <motion.nav 
-      className='h-16 glass-effect border-b border-primary-500/20 flex justify-center items-center sticky top-0 z-50'
+      className='h-20 glass-morphism border-b border-primary-500/20 flex justify-center items-center sticky top-0 z-50 backdrop-blur-xl'
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
+      style={{
+        background: 'rgba(10, 10, 15, 0.8)',
+        backdropFilter: 'blur(20px)',
+        borderBottom: '1px solid rgba(14, 165, 233, 0.2)'
+      }}
     >
         <div className='max-w-6xl w-full px-6 flex justify-between items-center'>
             {/* Logo */}
@@ -36,12 +41,25 @@ function NavBar() {
               whileTap={{ scale: 0.95 }}
             >
                 <button 
-                  className="cursor-pointer group flex items-center gap-2"
+                  className="cursor-pointer group flex items-center gap-3"
                   onClick={() => navigateTo('/')}
                 >
-                    <div className="w-8 h-8 bg-gradient-primary rounded-lg flex items-center justify-center">
-                      <span className="text-white font-bold text-sm">AB</span>
-                    </div>
+                    <motion.div 
+                        className="w-10 h-10 bg-gradient-to-r from-primary-500 to-secondary-500 rounded-xl flex items-center justify-center relative overflow-hidden"
+                        whileHover={{ rotate: 360 }}
+                        transition={{ duration: 0.6, type: "spring" }}
+                    >
+                        <motion.span 
+                            className="text-white font-bold text-sm relative z-10"
+                            whileHover={{ scale: 1.1 }}
+                        >
+                            AB
+                        </motion.span>
+                        <motion.div
+                            className="absolute inset-0 bg-gradient-to-r from-secondary-500 to-accent-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                            initial={false}
+                        />
+                    </motion.div>
                     <span className="gradient-text group-hover:text-glow transition-all duration-300 font-bold text-lg">
                         Abdelfattah Berkach
                     </span>
@@ -59,14 +77,18 @@ function NavBar() {
                   <motion.button 
                     key={item.name}
                     onClick={() => navigateTo(item.path)}
-                    className="text-textSecondary hover:text-textPrimary transition-all duration-300 cursor-pointer relative group flex items-center gap-2 px-3 py-2 rounded-xl hover:bg-primary-500/10"
+                    className="text-textSecondary hover:text-textPrimary transition-all duration-300 cursor-pointer relative group flex items-center gap-2 px-4 py-3 rounded-2xl hover:bg-primary-500/10 border border-transparent hover:border-primary-500/20"
                     whileHover={{ y: -2, scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                   >
-                    <item.IconComponent className="text-sm" />
-                    <span className="font-medium">{item.name}</span>
                     <motion.div
-                      className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-primary opacity-0 group-hover:opacity-100"
+                        className="absolute inset-0 bg-gradient-to-r from-primary-500/5 to-secondary-500/5 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                        initial={false}
+                    />
+                    <item.IconComponent className="text-sm relative z-10" />
+                    <span className="font-medium relative z-10">{item.name}</span>
+                    <motion.div
+                      className="absolute bottom-0 left-0 w-full h-0.5 bg-gradient-to-r from-primary-500 to-secondary-500 opacity-0 group-hover:opacity-100"
                       initial={{ scaleX: 0 }}
                       whileHover={{ scaleX: 1 }}
                       transition={{ duration: 0.3 }}
@@ -77,11 +99,15 @@ function NavBar() {
                 {/* CTA Button */}
                 <motion.a
                   href="/contact"
-                  className="btn-primary px-6 py-2 rounded-xl font-medium text-sm ml-4"
+                  className="btn-primary px-8 py-3 rounded-2xl font-medium text-sm ml-6 relative overflow-hidden group"
                   whileHover={{ scale: 1.05, y: -2 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  Let&apos;s Talk
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-primary-600 to-secondary-600 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    initial={false}
+                  />
+                  <span className="relative z-10">Let&apos;s Talk</span>
                 </motion.a>
             </div>
             

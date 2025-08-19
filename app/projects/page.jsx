@@ -219,10 +219,10 @@ export default function ProjectsPage() {
                             animate={{ opacity: 1, scale: 1 }}
                             exit={{ opacity: 0, scale: 0.9 }}
                             whileHover={{ 
-                                y: -10, 
-                                scale: 1.02,
-                                rotateX: 5,
-                                boxShadow: "0 25px 50px rgba(14, 165, 233, 0.2)"
+                                y: -15, 
+                                scale: 1.03,
+                                rotateX: 8,
+                                boxShadow: "0 30px 60px rgba(14, 165, 233, 0.3)"
                             }}
                             transition={{ 
                                 type: "spring", 
@@ -236,33 +236,61 @@ export default function ProjectsPage() {
                         >
                             {/* Project Image */}
                             <motion.div 
-                                className="w-full h-52 rounded-2xl mb-6 relative overflow-hidden group/image"
-                                whileHover={{ scale: 1.05, rotateZ: 2 }}
+                                className="w-full h-60 rounded-2xl mb-6 relative overflow-hidden group/image"
+                                whileHover={{ scale: 1.02 }}
                                 transition={{ type: "spring", stiffness: 300 }}
                             >
                                 <Image
                                     src={project.image}
                                     alt={project.title}
                                     fill
-                                    className="object-cover transition-transform duration-500 group-hover/image:scale-110"
+                                    className="object-cover transition-all duration-700 group-hover/image:scale-110 group-hover/image:brightness-110"
                                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                                 />
-                                <div className="absolute inset-0 bg-black/20 group-hover/image:bg-black/10 transition-all duration-300"></div>
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent group-hover/image:from-black/30 transition-all duration-300"></div>
                                 
-                                {/* Project Title Overlay */}
-                                <div className="absolute bottom-4 left-4 right-4 z-10">
-                                    <h3 className="text-white text-xl font-bold text-glow mb-1">
-                                        {project.title}
-                                    </h3>
-                                </div>
-                                
-                                {/* Animated Category Badge */}
+                                {/* Status Badge */}
                                 <motion.div
-                                    className="absolute top-4 right-4 bg-black/40 backdrop-blur-sm px-3 py-1 rounded-full text-white text-sm font-medium z-10"
+                                    className="absolute top-4 left-4 bg-green-500/90 backdrop-blur-sm px-3 py-1.5 rounded-full text-white text-xs font-medium z-10 flex items-center gap-2"
                                     whileHover={{ scale: 1.1 }}
+                                    initial={{ opacity: 0, y: -20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: index * 0.1 }}
+                                >
+                                    <div className="w-1.5 h-1.5 bg-white rounded-full animate-pulse"></div>
+                                    {project.status}
+                                </motion.div>
+                                
+                                {/* Category Badge */}
+                                <motion.div
+                                    className="absolute top-4 right-4 bg-black/60 backdrop-blur-sm px-3 py-1.5 rounded-full text-white text-xs font-medium z-10"
+                                    whileHover={{ scale: 1.1, backgroundColor: "rgba(14, 165, 233, 0.8)" }}
+                                    transition={{ type: "spring", stiffness: 400 }}
                                 >
                                     {project.category}
                                 </motion.div>
+                                
+                                {/* Project Title Overlay */}
+                                <div className="absolute bottom-4 left-4 right-4 z-10">
+                                    <motion.h3 
+                                        className="text-white text-xl font-bold text-glow mb-2"
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: index * 0.1 + 0.2 }}
+                                    >
+                                        {project.title}
+                                    </motion.h3>
+                                    <motion.div 
+                                        className="text-white/80 text-sm flex items-center gap-2"
+                                        initial={{ opacity: 0, y: 20 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        transition={{ delay: index * 0.1 + 0.3 }}
+                                    >
+                                        <span>{project.year || '2024'}</span>
+                                        <span>•</span>
+                                        <span>{project.technologies?.length || 0} Technologies</span>
+                                    </motion.div>
+                                </div>
                                 
                                 {/* Animated background pattern */}
                                 <motion.div
@@ -299,7 +327,7 @@ export default function ProjectsPage() {
                                 
                                 {/* Technologies */}
                                 <div className="flex flex-wrap gap-2">
-                                    {project.technologies.map((tech, techIndex) => (
+                                    {(project.technologies || []).map((tech, techIndex) => (
                                         <motion.span 
                                             key={tech} 
                                             className="px-3 py-1 bg-primary-500/20 text-primary-300 rounded-full text-sm border border-primary-500/30 hover:border-primary-400/50 transition-all duration-300"
